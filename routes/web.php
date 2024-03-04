@@ -1,45 +1,31 @@
 <?php
 
-use App\Http\Controllers\Auth\EmailVerificationController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Livewire\Auth\Login;
-use App\Livewire\Auth\Passwords\Confirm;
-use App\Livewire\Auth\Passwords\Email;
-use App\Livewire\Auth\Passwords\Reset;
-use App\Livewire\Auth\Register;
-use App\Livewire\Auth\Verify;
+use App\Livewire\Groups\Index;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome')->name('home');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-Route::middleware('guest')->group(function () {
-    Route::get('login', Login::class)
-        ->name('login');
+Route::view('/', 'welcome');
 
-    Route::get('register', Register::class)
-        ->name('register');
-});
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::get('password/reset', Email::class)
-    ->name('password.request');
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
 
-Route::get('password/reset/{token}', Reset::class)
-    ->name('password.reset');
+Route::get('groups', Index::class)
+    ->middleware(['auth'])
+    ->name('groups');
 
-Route::middleware('auth')->group(function () {
-    Route::get('email/verify', Verify::class)
-        ->middleware('throttle:6,1')
-        ->name('verification.notice');
-
-    Route::get('password/confirm', Confirm::class)
-        ->name('password.confirm');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
-        ->middleware('signed')
-        ->name('verification.verify');
-
-    Route::post('logout', LogoutController::class)
-        ->name('logout');
-});
+require __DIR__.'/auth.php';
