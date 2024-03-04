@@ -2,7 +2,7 @@
     <x-header>{{ __('Meus Grupos') }}</x-header>
 
     <x-container>
-        {{-- @if ($this->hasInvitations)
+        @if ($this->hasInvitations)
             <livewire:groups.accept-invitation/>
         @endif
 
@@ -20,15 +20,15 @@
                     />
                 @endcan
             </div>
-        @endforeach --}}
+        @endforeach
 
-        {{-- @unless ($create)
+        @unless ($create)
             <x-card class="text-[100px] text-center opacity-25 hover:opacity-100
             cursor-pointer" wire:click="$set('create', 1)">
                 +
             </x-card>
         @else
             <livewire:groups.create/>
-        @endunless --}}
+        @endunless
     </x-container>
 </div>

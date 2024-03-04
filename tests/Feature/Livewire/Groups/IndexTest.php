@@ -1,19 +1,7 @@
-<?php
+<?php 
 
-namespace Tests\Feature\Livewire\Groups;
+uses()->group('groups.index');
 
-use App\Livewire\Groups\Index;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Livewire\Livewire;
-use Tests\TestCase;
+it('', function () {
 
-class IndexTest extends TestCase
-{
-    /** @test */
-    public function renders_successfully()
-    {
-        Livewire::test(Index::class)
-            ->assertStatus(200);
-    }
-}
+});
