@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BePartOfGroupNotification extends Notification
+class DontWantToBePartOfGroupNotification extends Notification
 {
     use Queueable;
 
@@ -35,9 +35,7 @@ class BePartOfGroupNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Você foi convidado para fazer parte de um grupo!')
-                    ->action('Clique aqui para fazer parte', url('/'))
-                    ->line('Agradecido desde já!');
+                    ->line('Quero nãooo');
     }
 
     /**
