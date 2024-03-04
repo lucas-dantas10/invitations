@@ -11,6 +11,8 @@ class GroupInvitation extends Model
 {
     use HasFactory, Notifiable;
 
+    protected $fillable = ['user_id', 'group_id', 'email'];
+
     public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
