@@ -10,11 +10,11 @@
                             <x-table.td>{{ $item->group->name }}</x-table.td>
                             <x-table.td class="text-right">
                                 <x-button wire:click="accept({{ $item->id }})">
-                                    Accept
+                                    Aceitar
                                 </x-button>
 
                                 <x-button wire:click="reject({{ $item->id }})">
-                                    Reject
+                                    Rejeitar
                                 </x-button>
                             </x-table.td>
                         </tr>

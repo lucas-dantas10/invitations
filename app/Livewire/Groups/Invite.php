@@ -11,7 +11,6 @@ class Invite extends Component
 {
     public Group $group;
     public ?string $email = null;
-    public bool $show = false;
     protected array $rules = [
         'email' => ['required', 'email', 'max:255'],
     ];
@@ -35,10 +34,5 @@ class Invite extends Component
 
         $this->show = false;
         $this->reset('email');
-    }
-
-    public function invite()
-    {
-        $this->show = true;
     }
 }
