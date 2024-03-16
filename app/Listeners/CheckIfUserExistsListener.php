@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\GroupInvitationCreatedEvent;
+use App\Jobs\CreateInvitationJob;
+use App\Jobs\CreateInvitationUserJob;
 use App\Models\User;
 use App\Notifications\BePartOfGroupNotification;
 use Illuminate\Bus\Queueable;
@@ -18,12 +20,12 @@ class CheckIfUserExistsListener
      */
     public function handle(GroupInvitationCreatedEvent $event): void
     {
-        if ($user = User::whereEmail($event->invitation->email)->first())
-        {
-            $user->notify(new BePartOfGroupNotification());        
+        if ($user = User::whereEmail($event->invitation->email)->first()) {
+            CreateInvitationUserJob::dispatch($user);
             return;
         }
 
-        $event->invitation->notify(new BePartOfGroupNotification());
+        CreateInvitationJob::dispatch($event->invitation);
+
     }
 }

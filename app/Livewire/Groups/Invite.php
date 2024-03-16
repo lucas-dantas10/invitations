@@ -31,8 +31,7 @@ class Invite extends Component
         ]);
 
         GroupInvitationCreatedEvent::dispatch($invitation);
-
-        $this->show = false;
+        
         $this->reset('email');
     }
 }
